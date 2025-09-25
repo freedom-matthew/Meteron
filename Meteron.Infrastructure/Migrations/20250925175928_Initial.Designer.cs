@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Meteron.Infrastructure.Migrations
 {
     [DbContext(typeof(MeteronDbContext))]
-    [Migration("20250925171939_Initial")]
+    [Migration("20250925175928_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

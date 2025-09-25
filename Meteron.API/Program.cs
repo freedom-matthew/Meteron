@@ -5,8 +5,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<MeteronDbContext>(options => options.UseSqlite(connectionString, x => x.MigrationsAssembly("Meteron.Infrastructure")));
+// Place SQLite DB file in the same project as MeteronDbContext (Infrastructure)
+var infrastructureRoot = Path.GetFullPath("../Meteron.Infrastructure", builder.Environment.ContentRootPath);
+var dbPath = Path.Combine(infrastructureRoot, "meteron.db");
+Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
+var connectionString = $"Data Source={dbPath}";
+
+Console.WriteLine($"[EF] SQLite DB path: {dbPath}");
+
+builder.Services.AddDbContext<MeteronDbContext>(options =>
+    options.UseSqlite(connectionString, x => x.MigrationsAssembly("Meteron.Infrastructure")));
 
 builder.Services.AddOpenApi();
 
@@ -34,9 +42,9 @@ app.MapPost("/customers/household", (CreateHouseholdCustomerRequest request) =>
     return customer.ToResponse();
 });
 
-app.MapPost("/customers/business", (CreateBusinessCustomerRequest dto) =>
+app.MapPost("/customers/business", (CreateBusinessCustomerRequest request) =>
 {
-    var customer = BusinessCustomer.Create(new Email(dto.Email), dto.Name, dto.RegistrationNumber);
+    var customer = BusinessCustomer.Create(new Email(request.Email), request.Name, request.RegistrationNumber);
     customers.Add(customer.ToResponse());
     
     return customer.ToResponse();
