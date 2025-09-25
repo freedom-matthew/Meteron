@@ -1,8 +1,42 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{775ED1F6-1525-4D64-8BA9-2EEAF91345D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meteron.Domain", "Meteron.Domain\Meteron.Domain.csproj", "{CC84DA5A-9FD6-4CF9-9DB4-E7046A078B68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meteron.Application", "Meteron.Application\Meteron.Application.csproj", "{54651FB1-8DB4-4C47-AF84-F76EF73448A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meteron.Infrastructure", "Meteron.Infrastructure\Meteron.Infrastructure.csproj", "{002E8C89-B247-45E2-87D9-3A70BEAB1217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meteron.API", "Meteron.API\Meteron.API.csproj", "{05D11570-E19C-4994-9F16-160F36562136}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CC84DA5A-9FD6-4CF9-9DB4-E7046A078B68} = {775ED1F6-1525-4D64-8BA9-2EEAF91345D2}
+		{54651FB1-8DB4-4C47-AF84-F76EF73448A5} = {775ED1F6-1525-4D64-8BA9-2EEAF91345D2}
+		{002E8C89-B247-45E2-87D9-3A70BEAB1217} = {775ED1F6-1525-4D64-8BA9-2EEAF91345D2}
+		{05D11570-E19C-4994-9F16-160F36562136} = {775ED1F6-1525-4D64-8BA9-2EEAF91345D2}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC84DA5A-9FD6-4CF9-9DB4-E7046A078B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC84DA5A-9FD6-4CF9-9DB4-E7046A078B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC84DA5A-9FD6-4CF9-9DB4-E7046A078B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC84DA5A-9FD6-4CF9-9DB4-E7046A078B68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54651FB1-8DB4-4C47-AF84-F76EF73448A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54651FB1-8DB4-4C47-AF84-F76EF73448A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54651FB1-8DB4-4C47-AF84-F76EF73448A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54651FB1-8DB4-4C47-AF84-F76EF73448A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002E8C89-B247-45E2-87D9-3A70BEAB1217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002E8C89-B247-45E2-87D9-3A70BEAB1217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002E8C89-B247-45E2-87D9-3A70BEAB1217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002E8C89-B247-45E2-87D9-3A70BEAB1217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05D11570-E19C-4994-9F16-160F36562136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05D11570-E19C-4994-9F16-160F36562136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05D11570-E19C-4994-9F16-160F36562136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05D11570-E19C-4994-9F16-160F36562136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

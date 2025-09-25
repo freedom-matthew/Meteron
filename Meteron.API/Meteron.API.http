@@ -1,0 +1,22 @@
+GET http://localhost:5000/customers
+
+###
+POST http://localhost:5000/customers/household
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "firstName": "John",
+  "lastName": "Doe",
+  "dateOfBirth": "1997-05-19"
+}
+
+###
+POST http://localhost:5000/customers/business
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "name": "Abnormality s.r.o.",
+  "registrationNumber": "123456789"
+}
