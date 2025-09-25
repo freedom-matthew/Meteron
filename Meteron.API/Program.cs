@@ -27,16 +27,25 @@ app.UseHttpsRedirection();
 
 #region PLAYGROUND
 
-List<CustomerResponse> customers = [];
+app.MapGet("/customers", async (MeteronDbContext db) =>
+{
+    var customers = await db.Customers.ToListAsync();
+    await db.SaveChangesAsync();
 
-app.MapGet("/customers", () => customers);
+    List<CustomerResponse> customerResponses = [];
+    foreach (var customer in customers)
+    {
+        customerResponses.Add(customer.ToResponse());
+    }
+
+    return customerResponses;
+});
 
 app.MapPost("/customers/household", async (CreateHouseholdCustomerRequest request, MeteronDbContext db) =>
 {
     var customer = HouseholdCustomer.Create(new Email(request.Email), request.FirstName, request.LastName, request.DateOfBirth);
     await db.Customers.AddAsync(customer);
-    
-    customers.Add(customer.ToResponse());
+    await db.SaveChangesAsync();
     return customer.ToResponse();
 });
 
@@ -44,8 +53,8 @@ app.MapPost("/customers/business", async (CreateBusinessCustomerRequest request,
 {
     var customer = BusinessCustomer.Create(new Email(request.Email), request.Name, request.RegistrationNumber);
     await db.Customers.AddAsync(customer);
+    await db.SaveChangesAsync();
     
-    customers.Add(customer.ToResponse());
     return customer.ToResponse();
 });
 
