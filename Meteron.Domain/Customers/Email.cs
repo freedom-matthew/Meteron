@@ -5,7 +5,7 @@ namespace Meteron.Domain.Customers;
 public readonly record struct Email
 {
     private static readonly Regex _regex = new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled);
-    private string Value { get; }
+    public string Value { get; }
 
     public Email(string value)
     {

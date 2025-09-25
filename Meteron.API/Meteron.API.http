@@ -16,7 +16,7 @@ POST http://localhost:5000/customers/business
 Content-Type: application/json
 
 {
-  "email": "john@example.com",
+  "email": "ceo@abnormality.com",
   "name": "Abnormality s.r.o.",
   "registrationNumber": "123456789"
 }

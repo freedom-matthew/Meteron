@@ -1,6 +1,12 @@
+using Meteron.API.Contracts.Customers;
 using Meteron.Domain.Customers;
+using Meteron.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<MeteronDbContext>(options => options.UseSqlite(connectionString, x => x.MigrationsAssembly("Meteron.Infrastructure")));
 
 builder.Services.AddOpenApi();
 
@@ -16,28 +22,26 @@ app.UseHttpsRedirection();
 
 #region PLAYGROUND
 
-List<Customer> customers = [];
+List<CustomerResponse> customers = [];
 
 app.MapGet("/customers", () => customers);
 
-app.MapPost("/customers/household", (HouseholdCustomerDto dto) =>
+app.MapPost("/customers/household", (CreateHouseholdCustomerRequest request) =>
 {
-    var customer = HouseholdCustomer.Create(new Email(dto.Email), dto.FirstName, dto.LastName, dto.DateOfBirth);
-    customers.Add(customer);
-    return customer;
+    var customer = HouseholdCustomer.Create(new Email(request.Email), request.FirstName, request.LastName, request.DateOfBirth);
+    customers.Add(customer.ToResponse());
+
+    return customer.ToResponse();
 });
 
-app.MapPost("/customers/business", (BusinessCustomerDto dto) =>
+app.MapPost("/customers/business", (CreateBusinessCustomerRequest dto) =>
 {
     var customer = BusinessCustomer.Create(new Email(dto.Email), dto.Name, dto.RegistrationNumber);
-    customers.Add(customer);
-    return customer;
+    customers.Add(customer.ToResponse());
+    
+    return customer.ToResponse();
 });
 
 #endregion
 
 app.Run();
-
-// DTO definitions
-public record HouseholdCustomerDto(string Email, string FirstName, string LastName, DateOnly DateOfBirth);
-public record BusinessCustomerDto(string Email, string Name, string RegistrationNumber);
